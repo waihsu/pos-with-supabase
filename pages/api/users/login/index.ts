@@ -35,7 +35,7 @@ export default async function handler(
       }
       const accessToken = jwt.sign(user, config.jwtSecret);
 
-      res.status(200).json({ user, accessToken });
+      res.status(200).json({ user });
     } catch (err) {
       console.log(err);
       res.status(401).json({ err });
