@@ -23,7 +23,7 @@ const variant: Variants = {
   },
 };
 
-const MenuCategories = () => {
+const Details = () => {
   const { menuCategories } = useContext(AppContext);
   const { updateMenuCategories } = useMenuCategories();
   const router = useRouter();
@@ -37,7 +37,7 @@ const MenuCategories = () => {
   return (
     <Box>
       <Box sx={{ width: "100%", px: 3 }}>
-        {menuCategories.map((menuCategorie) => {
+        {menusSingleCategories.map((menuCategorie) => {
           return (
             <motion.div
               key={menuCategorie.id}
@@ -84,4 +84,4 @@ const MenuCategories = () => {
   );
 };
 
-export default MenuCategories;
+export default Details;

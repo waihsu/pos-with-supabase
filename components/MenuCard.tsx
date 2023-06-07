@@ -20,30 +20,28 @@ const MenuCard = ({ name, description, price, asset_url, id }: Menu) => {
 
   return (
     <Box>
-      <Link href={`/backoffice/menu-categories?id=${id}`}>
-        <Card sx={{ width: "100%" }}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="140"
-              image={asset_url}
-              alt="green iguana"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {name}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {description}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {price}
-              </Typography>
-            </CardContent>
-            <Button onClick={() => deleteMenu(id, asset_url)}>Delete</Button>
-          </CardActionArea>
-        </Card>
-      </Link>
+      <Card sx={{ width: "100%" }}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            height="140"
+            image={asset_url}
+            alt="green iguana"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {name}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {description}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {price}
+            </Typography>
+          </CardContent>
+          <Button onClick={() => deleteMenu(id, asset_url)}>Delete</Button>
+        </CardActionArea>
+      </Card>
     </Box>
   );
 };

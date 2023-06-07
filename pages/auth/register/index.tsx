@@ -1,11 +1,17 @@
+import { supabase } from "@/libs/supabase";
 import { Box, Button, TextField } from "@mui/material";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 const Register = () => {
   const [user, setUser] = useState({ name: "", email: "", password: "" });
-
+  const router = useRouter();
   const register = async () => {
-    const resp = await fetch("http://localhost:5000/api/user/register", {
+    // const { data, error } = await supabase.auth.signUp(user);
+    // if (data.user) {
+    //   router.push("/");
+    // }
+    const resp = await fetch("/api/users/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

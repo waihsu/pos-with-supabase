@@ -1,12 +1,11 @@
 import { useSession, signIn, signOut } from "next-auth/react";
-
-export default function Component() {
-  const { data: session } = useSession();
+import { Session } from "@supabase/auth-helpers-nextjs";
+export default function Component({ session }: { session: Session | null }) {
+  // const { data: session } = useSession();
+  const user = session?.user;
+  console.log(user);
 
   if (session) {
-    console.log(session.accessToken);
-    const selectID = localStorage.getItem("selectedLocationId");
-    console.log(selectID);
     return (
       <>
         Signed in as {session.user?.name}

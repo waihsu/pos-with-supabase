@@ -5,22 +5,34 @@ import GoogleIcon from "@mui/icons-material/Google";
 import Link from "next/link";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { useRouter } from "next/router";
 import { config } from "@/config/config";
+import useLogin from "@/hooks/useLogin";
+import { supabase } from "@/libs/supabase";
+import { AppContext } from "@/contexts/AppContext";
 
 const Login = () => {
   const navigate = useRouter();
   const [error, setError] = useState<string>("");
   const [user, setUser] = useState({ email: "", password: "" });
+  const { login } = useLogin();
+  const router = useRouter();
+  const { fetchData } = useContext(AppContext);
 
   const onSubmit = async () => {
-    const result = await signIn("credentials", {
+    // const { data, error } = await supabase.auth.signInWithPassword(user);
+    // if (data) {
+    //   router.push("/");
+    //   fetchData();
+    // }
+
+    await signIn("credentials", {
       email: user.email,
       password: user.password,
       redirect: true,
-      callbackUrl: "/",
+      callbackUrl: "/backoffice/orders",
     });
     // const data = await login(user);
     // // console.log(data);
@@ -104,7 +116,7 @@ const Login = () => {
           <Button
             onClick={() =>
               signIn("google", {
-                callbackUrl: "",
+                callbackUrl: "/backoffice/orders",
               })
             }
             variant="contained">
@@ -115,7 +127,7 @@ const Login = () => {
             onClick={() =>
               signIn("github", {
                 redirect: true,
-                callbackUrl: "http://localhost:3000",
+                callbackUrl: "/backoffice/orders",
               })
             }
             sx={{ bgcolor: "black" }}
@@ -126,7 +138,7 @@ const Login = () => {
           <Button
             onClick={() => {
               signIn("facebook", {
-                callbackUrl: "https://blog-with-auth-eta.vercel.app",
+                callbackUrl: "/backoffice/orders",
               });
             }}
             variant="contained">

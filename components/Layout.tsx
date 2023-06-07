@@ -17,7 +17,7 @@ const Layout = ({ children }: Props) => {
         maxHeight: "100vh",
         // background: `${bg}`,
         overflowX: "hidden",
-        backgroundImage: `${bg}`,
+        bgcolor: `${bg}`,
       }}>
       <Box sx={{ position: "absolute", zIndex: 1100 }}>
         <Drawer />
@@ -36,7 +36,7 @@ const Layout = ({ children }: Props) => {
               mx: "auto",
               boxShadow: "10px 10px 10px rgba(20,20,20,.5)",
               opacity: 0.8,
-              background: `${mainBg}`,
+              bgcolor: `${mainBg}`,
             }}>
             {children}
           </Box>

@@ -21,7 +21,7 @@ import { motion } from "framer-motion";
 
 import Logout from "./Logout";
 import Link from "next/link";
-import { signOut } from "next-auth/react";
+import { getSession, signOut } from "next-auth/react";
 import { config } from "@/config/config";
 
 const sidebarMenuItems = [
@@ -70,13 +70,9 @@ const sidebarMenuItems = [
 ];
 
 const SideBar = () => {
-  const {
-    mainBg,
-    sideBarBgColor,
-    navSyntaxColor,
-    isMediumScreen,
-    isSmallscreen,
-  } = useContext(ThemeContext);
+  const { mainBg, sideBarBgColor, syntax, isMediumScreen, isSmallscreen } =
+    useContext(ThemeContext);
+  const { data: session } = getSession();
 
   return (
     <Box
@@ -86,7 +82,7 @@ const SideBar = () => {
         justifyContent: "center",
 
         flexDirection: "column",
-        background: `${sideBarBgColor}`,
+        bgcolor: `${sideBarBgColor}`,
         boxShadow: "0px 10px 10px rgba(20,20,20,.5)",
         opacity: 0.8,
       }}>
@@ -97,12 +93,12 @@ const SideBar = () => {
               key={menuItem.id}
               href={menuItem.route}
               style={{ textDecoration: "none" }}>
-              <motion.div whileHover={{ background: `${mainBg}`, scale: 1.1 }}>
+              <motion.div whileHover={{ scale: 1.1 }}>
                 <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon
                       sx={{
-                        color: `${navSyntaxColor}`,
+                        color: `${syntax}`,
                         ml: isMediumScreen ? 1 : 0,
                       }}>
                       {menuItem.icon}
@@ -111,7 +107,7 @@ const SideBar = () => {
                     {isMediumScreen ? null : (
                       <ListItemText
                         primary={menuItem.label}
-                        sx={{ color: `${navSyntaxColor}` }}
+                        sx={{ color: `${syntax}` }}
                       />
                     )}
                   </ListItemButton>
@@ -127,12 +123,12 @@ const SideBar = () => {
               key={menuItem.id}
               href={menuItem.route}
               style={{ textDecoration: "none" }}>
-              <motion.div whileHover={{ background: `${mainBg}`, scale: 1.1 }}>
+              <motion.div whileHover={{ scale: 1.1 }}>
                 <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon
                       sx={{
-                        color: `${navSyntaxColor}`,
+                        color: `${syntax}`,
                         ml: isMediumScreen ? 1 : 0,
                       }}>
                       {menuItem.icon}
@@ -141,7 +137,7 @@ const SideBar = () => {
                     <ListItemText
                       primary={menuItem.label}
                       sx={{
-                        color: `${navSyntaxColor}`,
+                        color: `${syntax}`,
                         display: isMediumScreen ? "none" : "flex",
                       }}
                     />
@@ -152,7 +148,14 @@ const SideBar = () => {
           ))}
         </List>
       </Box>
-      <Button onClick={() => signOut()}>Logout</Button>
+      {!session ? (
+        <Button href="/auth/login">Login</Button>
+      ) : (
+        <Button onClick={() => signOut()}>Logout</Button>
+      )}
+      <Link href={"/auth/register"}>
+        <Button>Register</Button>
+      </Link>
     </Box>
   );
 };

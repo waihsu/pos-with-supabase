@@ -75,9 +75,9 @@ const AppProvider = ({ children }: Props) => {
     }
   }, [session]);
 
-  if (status === "unauthenticated") {
-    router.push("/login");
-  }
+  // if (status === "unauthenticated") {
+  //   router.push("/auth/login");
+  // }
 
   const fetchData = async () => {
     const response = await fetch(`/api/appdata?email=${session?.user?.email}`);

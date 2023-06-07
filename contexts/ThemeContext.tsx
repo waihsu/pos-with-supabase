@@ -9,7 +9,6 @@ interface DefaultTheme {
   bg: string;
   mainBg: string;
   sideBarBgColor: string;
-  navSyntaxColor: string;
   syntax: string;
   spanSyntax: string;
   hoverColor: string;
@@ -19,13 +18,10 @@ interface DefaultTheme {
 }
 
 const defaultTheme: DefaultTheme = {
-  bg: "linear-gradient(122deg, rgba(43,12,91,1) 0%, rgba(128,39,53,1) 21%, rgba(205,160,56,1) 83%, rgba(93,48,20,1) 100%)",
-  mainBg:
-    "linear-gradient(150deg, rgba(201,191,120,1) 0%, rgba(87,23,99,1) 100%)",
-  sideBarBgColor:
-    " linear-gradient(122deg, rgba(255,201,0,0.27306274072128855) 0%, rgba(255,139,0,0.15261456144957986) 100%)",
-  navSyntaxColor: "#720e9e",
-  syntax: "#fff",
+  bg: "#FEBE10",
+  mainBg: "#4C516D",
+  sideBarBgColor: " #B0C4DE",
+  syntax: "black",
   spanSyntax: "rgb(86,86,86)",
   hoverColor: "#841617",
   isSmallscreen: true,

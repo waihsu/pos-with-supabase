@@ -4,18 +4,20 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import Link from "next/link";
 
 const Navbar = () => {
-  const { mainBg } = useContext(ThemeContext);
+  const { sideBarBgColor, syntax } = useContext(ThemeContext);
   return (
     <Box
       sx={{
-        background: `${mainBg}`,
+        bgcolor: `${sideBarBgColor}`,
         position: "sticky",
         top: 0,
         zIndex: 100,
         opacity: 0.8,
       }}>
       <Link href={"/"}>
-        <Typography sx={{ textAlign: "center", py: 2 }}>Navbar</Typography>
+        <Typography sx={{ textAlign: "center", py: 2, color: `${syntax}` }}>
+          Navbar
+        </Typography>
       </Link>
     </Box>
   );
